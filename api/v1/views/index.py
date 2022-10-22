@@ -2,6 +2,7 @@
 """
 starts a Flask web application
 """
+from distutils.log import error
 from flask import jsonify
 from api.v1.views import app_views
 from models.amenity import Amenity
@@ -17,6 +18,7 @@ from models import storage
 def get_status():
     return jsonify({'status': 'OK'})
 
+
 @app_views.route("/stats")
 def get_stats():
     return jsonify({
@@ -27,3 +29,8 @@ def get_stats():
         "states": storage.count(State),
         "users": storage.count(User)
     })
+
+
+@app_views.errorhandler(404)
+def not_found(e):
+    return jsonify({"error": "Not Found"}), 404
