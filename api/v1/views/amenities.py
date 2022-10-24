@@ -16,7 +16,8 @@ def get_amenities():
     return jsonify(amenities)
 
 
-@app_views.route("/amenities/<amenity_id>", methods=['GET'], strict_slashes=False)
+@app_views.route("/amenities/<amenity_id>",
+                 methods=['GET'], strict_slashes=False)
 def get_amenity(amenity_id):
     obj = storage.get(Amenity, amenity_id)
     if obj is None:
@@ -46,7 +47,8 @@ def create_amenity():
     return jsonify(obj.to_dict()), 201
 
 
-@app_views.route("/amenities/<amenity_id>", methods=['PUT'], strict_slashes=False)
+@app_views.route("/amenities/<amenity_id>",
+                 methods=['PUT'], strict_slashes=False)
 def update_amenity(amenity_id):
     if not request.json:
         abort(400, "Not a JSON")

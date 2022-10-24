@@ -32,4 +32,4 @@ def get_stats():
 
 @app_views.errorhandler(404)
 def not_found(e):
-    return make_response(jsonify({"error": "Not Found"}), 404)
+    return make_response(jsonify({"error": "Not found"}), 404)
